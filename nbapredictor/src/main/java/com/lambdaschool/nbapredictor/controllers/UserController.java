@@ -174,68 +174,7 @@ public class UserController
                                     HttpStatus.OK);
     }
 
-    // http://localhost:2019/users/user
-    //        {
-    //            "username": "Mojo",
-    //            "primaryemail": "mojo@lambdaschool.local",
-    //            "password" : "Coffee123",
-    //            "useremails": [
-    //            {
-    //                "useremail": "mojo@mymail.local"
-    //            },
-    //            {
-    //                "useremail": "mojo@mymail.local"
-    //            },
-    //            {
-    //                "useremail": "mojo@email.local"
-    //            }
-    //        ]
-    //        }
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping(value = "/user",
-                 consumes = {"application/json"},
-                 produces = {"application/json"})
-    public ResponseEntity<?> addNewUser(HttpServletRequest request,
-										@Valid
-                                        @RequestBody
-                                                User newuser) throws URISyntaxException
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
 
-        newuser = userService.save(newuser);
-
-        // set the location header for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newUserURI = ServletUriComponentsBuilder.fromCurrentRequest()
-                                                    .path("/{userid}")
-                                                    .buildAndExpand(newuser.getUserid())
-                                                    .toUri();
-        responseHeaders.setLocation(newUserURI);
-
-        return new ResponseEntity<>(null,
-                                    responseHeaders,
-                                    HttpStatus.CREATED);
-    }
-
-
-    // http://localhost:2019/users/user/7
-//        {
-//            "userid": 7,
-//                "username": "cinnamon",
-//                "primaryemail": "cinnamon@lambdaschool.home",
-//                "useremails": [
-//            {
-//                    "useremail": "cinnamon@mymail.local"
-//            },
-//            {
-//                    "useremail": "hops@mymail.local"
-//            },
-//            {
-//                    "useremail": "bunny@email.local"
-//            }
-//        ]
-//        }
     @PutMapping(value = "/user/{id}")
     public ResponseEntity<?> updateUser(HttpServletRequest request,
 										@RequestBody
@@ -267,40 +206,4 @@ public class UserController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    // http://localhost:2019/users/user/15/role/2
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @DeleteMapping("/user/{userid}/role/{roleid}")
-    public ResponseEntity<?> deleteUserRoleByIds(HttpServletRequest request,
-												 @PathVariable
-                                                         long userid,
-												 @PathVariable
-                                                         long roleid)
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
-
-        userService.deleteUserRole(userid,
-                                   roleid);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-
-    // http://localhost:2019/users/user/15/role/2
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping("/user/{userid}/role/{roleid}")
-    public ResponseEntity<?> postUserRoleByIds(HttpServletRequest request,
-											   @PathVariable
-                                                       long userid,
-											   @PathVariable
-                                                       long roleid)
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
-
-        userService.addUserRole(userid,
-                                roleid);
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
 }

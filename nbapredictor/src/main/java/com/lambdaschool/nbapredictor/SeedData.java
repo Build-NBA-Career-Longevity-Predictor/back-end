@@ -55,7 +55,7 @@ public class SeedData implements CommandLineRunner
                                                                     new RandomService());
         Faker nameFaker = new Faker(new Locale("en-US"));
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 10; i++)
         {
             new User();
             User fakeUser;

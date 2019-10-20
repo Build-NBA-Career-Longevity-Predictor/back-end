@@ -1,8 +1,7 @@
 package com.lambdaschool.nbapredictor.config;
 
 import com.fasterxml.classmate.TypeResolver;
-import com.lambdaschool.nbapredictor.models.ErrorDetail;
-import com.lambdaschool.nbapredictor.models.TokenModel;
+import com.lambdaschool.nbapredictor.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,14 +39,13 @@ public class Swagger2Config
                                                       .ignoredParameterTypes(Pageable.class) // allows only my paging parameter list
                                                       .apiInfo(apiEndPointsInfo())
                                                       .pathMapping("/")
-                                                      .additionalModels(resolver.resolve(TokenModel.class),
-                                                                        resolver.resolve(ErrorDetail.class))
-                                                      .ignoredParameterTypes(SimpleGrantedAuthority.class);
+                                                      .ignoredParameterTypes(SimpleGrantedAuthority.class,
+                                                              Role.class, User.class, UserMinimum.class, UserRoles.class);
     }
 
     private ApiInfo apiEndPointsInfo()
     {
-        return new ApiInfoBuilder().title("Java Spring Back End Project")
+        return new ApiInfoBuilder().title("NBA Career Longevity Predictor Back End")
                                    .description("The Back End for the NBA Career Longevity Predictor ")
                                    .contact(new Contact("Ahmad Guenoun",
                                                         "",
