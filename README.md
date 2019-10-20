@@ -68,7 +68,7 @@ NBA contracts are sometimes 9 figures long. It is in a team's best interest to h
 
 ```javascript
 
-axios.post('URL HERE', 
+axios.post('https://nbapredictor-backend.herokuapp.com/', 
            `grant_type=password&username=${USERNAME}&password=${PASSWORD}`, 
            {
             headers: { Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
