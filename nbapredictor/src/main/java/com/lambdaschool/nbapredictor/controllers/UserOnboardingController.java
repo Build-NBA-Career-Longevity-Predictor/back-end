@@ -57,7 +57,7 @@ public class UserOnboardingController {
 
 		newuser.setUsername(newminuser.getUsername());
 		newuser.setPassword(newminuser.getPassword());
-		newuser.setPrimaryemail(newminuser.getPrimaryemail());
+		newuser.setEmail(newminuser.getEmail());
 
 		ArrayList<UserRoles> newRoles = new ArrayList<>();
 		newRoles.add(new UserRoles(newuser,

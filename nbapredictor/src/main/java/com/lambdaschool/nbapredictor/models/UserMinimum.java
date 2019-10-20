@@ -7,7 +7,7 @@ public class UserMinimum
 {
     private String username;
     private String password;
-    private String primaryemail;
+    private String email;
 
     public String getUsername()
     {
@@ -29,13 +29,13 @@ public class UserMinimum
         this.password = password;
     }
 
-    public String getPrimaryemail()
+    public String getEmail()
     {
-        return primaryemail;
+        return email;
     }
 
-    public void setPrimaryemail(String primaryemail)
+    public void setEmail(String email)
     {
-        this.primaryemail = primaryemail;
+        this.email = email;
     }
 }

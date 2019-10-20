@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserDetailsService,
         User newUser = new User();
         newUser.setUsername(user.getUsername().toLowerCase());
         newUser.setPasswordNoEncrypt(user.getPassword());
-        newUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
+        newUser.setEmail(user.getEmail().toLowerCase());
 
         ArrayList<UserRoles> newRoles = new ArrayList<>();
         for (UserRoles ur : user.getUserroles())
@@ -145,9 +145,9 @@ public class UserServiceImpl implements UserDetailsService,
                 currentUser.setPasswordNoEncrypt(user.getPassword());
             }
 
-            if (user.getPrimaryemail() != null)
+            if (user.getEmail() != null)
             {
-                currentUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
+                currentUser.setEmail(user.getEmail().toLowerCase());
             }
 
             if (user.getUserroles()
