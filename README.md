@@ -8,7 +8,7 @@ NBA contracts are sometimes 9 figures long. It is in a team's best interest to h
 
 ## **API Documentation**
 
-**BASE URL** 
+**BASE URL** https://nbapredictor-backend.herokuapp.com/
 
 - Attach endpoints to the Base URL to hit them with HTTP Requests
 
@@ -31,7 +31,7 @@ NBA contracts are sometimes 9 figures long. It is in a team's best interest to h
 
 ### [POST] Registration
 
-#### URL:
+#### URL: https://nbapredictor-backend.herokuapp.com/signup
 
 **Payload:** _an object with the following credentials:_
 
@@ -62,7 +62,7 @@ NBA contracts are sometimes 9 figures long. It is in a team's best interest to h
 
 ### [POST] Login
 
-#### URL:
+#### URL: https://nbapredictor-backend.herokuapp.com/login
 
 **Request Structure:** _the username and password with an authorization header containing the CLIENTID and CLIENTSECRET_
 
