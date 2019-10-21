@@ -41,6 +41,10 @@ public class User extends Auditable
     @JsonIgnoreProperties("user")
     private List<UserRoles> userroles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Player> players = new ArrayList<>();
+
     public User()
     {
     }
@@ -128,6 +132,14 @@ public class User extends Auditable
         this.userroles = userroles;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
     @JsonIgnore
     public List<SimpleGrantedAuthority> getAuthority()
     {
@@ -146,6 +158,6 @@ public class User extends Auditable
 
     @Override
     public String toString() {
-        return "User{" + "userid=" + userid + ", username='" + username + '\'' + ", password='" + password + '\'' + ", email='" + email + '\'' + ", userroles=" + userroles + '}';
+        return "User{" + "userid=" + userid + ", username='" + username + '\'' + ", password='" + password + '\'' + ", email='" + email + '\'' + ", userroles=" + userroles + ", players=" + players + '}';
     }
 }
