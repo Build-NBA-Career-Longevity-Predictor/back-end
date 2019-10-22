@@ -37,7 +37,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                          "/login/**",
                          "/signup")
             .permitAll()
-            .antMatchers("/users/**",
+            .antMatchers("/users/**","/players/**",
                          "/logout")
             .authenticated()
             .antMatchers("/roles/**",

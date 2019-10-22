@@ -3,6 +3,7 @@ package com.lambdaschool.nbapredictor.services;
 import com.lambdaschool.nbapredictor.exceptions.ResourceFoundException;
 import com.lambdaschool.nbapredictor.exceptions.ResourceNotFoundException;
 import com.lambdaschool.nbapredictor.logging.Loggable;
+import com.lambdaschool.nbapredictor.models.Player;
 import com.lambdaschool.nbapredictor.models.Role;
 import com.lambdaschool.nbapredictor.models.User;
 import com.lambdaschool.nbapredictor.models.UserRoles;
@@ -116,6 +117,13 @@ public class UserServiceImpl implements UserDetailsService,
                                        ur.getRole()));
         }
         newUser.setUserroles(newRoles);
+
+        ArrayList<Player> newPlayers = new ArrayList<>();
+        for (Player p : user.getPlayers()){
+            newPlayers.add(p);
+        }
+
+        newUser.setPlayers(newPlayers);
 
         return userrepos.save(newUser);
     }

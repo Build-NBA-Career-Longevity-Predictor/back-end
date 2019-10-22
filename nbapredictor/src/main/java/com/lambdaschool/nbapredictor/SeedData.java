@@ -3,9 +3,8 @@ package com.lambdaschool.nbapredictor;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
-import com.lambdaschool.nbapredictor.models.Role;
-import com.lambdaschool.nbapredictor.models.User;
-import com.lambdaschool.nbapredictor.models.UserRoles;
+import com.lambdaschool.nbapredictor.models.*;
+import com.lambdaschool.nbapredictor.services.PlayerService;
 import com.lambdaschool.nbapredictor.services.RoleService;
 import com.lambdaschool.nbapredictor.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 @Transactional
@@ -25,6 +25,9 @@ public class SeedData implements CommandLineRunner
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    PlayerService playerService;
 
 
     @Override
@@ -48,6 +51,14 @@ public class SeedData implements CommandLineRunner
                            admins);
 
         userService.save(u1);
+
+//        List<SimilarPlayer> list = new ArrayList<>();
+//
+//        Player p1 = new Player("a", "name", "pos", "25", "32", "Hurst", 25, 23, "Mik", 1.5, 1.2, 1.4, 1.4, 76,list);
+//
+//
+//        playerService.save(p1, u1);
+
 
         ArrayList<UserRoles> users = new ArrayList<>();
 
