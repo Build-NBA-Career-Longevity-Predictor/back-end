@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("playerService")
@@ -46,11 +47,35 @@ public class PlayerServiceImpl implements PlayerService {
 		newPlayer.setAssists_pg(player.getAssists_pg());
 		newPlayer.setMins_pg(player.getMins_pg());
 		newPlayer.setPrediction(player.getPrediction());
-		for(SimilarPlayer s : player.getSimilarplayers()){
-			s.setPlayer(newPlayer);
-			newPlayer.getSimilarplayers().add(s);
-		}
 		newPlayer.setUser(player.getUser());
+
+		ArrayList<SimilarPlayer> simList = new ArrayList<>();
+
+
+		for(SimilarPlayer s : player.getSimilarplayers()){
+			SimilarPlayer newSimilar = new SimilarPlayer();
+
+			newSimilar.setImgurl(s.getImgurl());
+			newSimilar.setName(s.getName());
+			newSimilar.setPosition(s.getPosition());
+			newSimilar.setWeight(s.getWeight());
+			newSimilar.setHeight(s.getHeight());
+			newSimilar.setCollege(s.getCollege());
+			newSimilar.setDraft_year(s.getDraft_year());
+			newSimilar.setDraft_pick(s.getDraft_pick());
+			newSimilar.setDrafted_by(s.getDrafted_by());
+
+			newSimilar.setPts_pg(s.getPts_pg());
+			newSimilar.setRebounds_pg(s.getRebounds_pg());
+			newSimilar.setAssists_pg(s.getAssists_pg());
+			newSimilar.setMins_pg(s.getMins_pg());
+
+			newSimilar.setPlayer(newPlayer);
+
+			simList.add(newSimilar);
+		}
+
+		newPlayer.setSimilarplayers(simList);
 
 		return playerRepo.save(newPlayer);
 	}
