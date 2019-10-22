@@ -169,4 +169,9 @@ public class SimilarPlayer extends Auditable {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
+
+	@Override
+	public String toString() {
+		return "SimilarPlayer{" + "similiarplayerid=" + similiarplayerid + ", imgurl='" + imgurl + '\'' + ", name='" + name + '\'' + ", position='" + position + '\'' + ", height='" + height + '\'' + ", weight='" + weight + '\'' + ", college='" + college + '\'' + ", draft_year=" + draft_year + ", draft_pick=" + draft_pick + ", drafted_by='" + drafted_by + '\'' + ", pts_pg=" + pts_pg + ", rebounds_pg=" + rebounds_pg + ", assists_pg=" + assists_pg + ", mins_pg=" + mins_pg + ", player=" + player + '}';
+	}
 }

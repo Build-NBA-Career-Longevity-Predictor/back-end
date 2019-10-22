@@ -10,7 +10,9 @@ public interface PlayerService {
 
 	Player findPlayerById(long id);
 
-	List<Player> save(Player player, User user);
+	void save(Player player);
 
-	List<Player> update(long id, Player player);
+	void update(long id, Player player);
+
+	void delete(long playerid, long userid);
 }

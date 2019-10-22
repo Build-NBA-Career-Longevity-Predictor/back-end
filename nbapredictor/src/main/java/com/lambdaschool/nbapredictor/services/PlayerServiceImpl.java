@@ -8,6 +8,7 @@ import com.lambdaschool.nbapredictor.repository.PlayerRepository;
 import com.lambdaschool.nbapredictor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +31,11 @@ public class PlayerServiceImpl implements PlayerService {
 		return playerRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Player Id: " + id + " Not found."));
 	}
 
+	@Transactional
 	@Override
-	public List<Player> save(Player player, User user) {
+	public void save(Player player) {
 		Player newPlayer = new Player();
+
 		newPlayer.setImgurl(player.getImgurl());
 		newPlayer.setName(player.getName());
 		newPlayer.setPosition(player.getPosition());
@@ -47,21 +50,17 @@ public class PlayerServiceImpl implements PlayerService {
 		newPlayer.setAssists_pg(player.getAssists_pg());
 		newPlayer.setMins_pg(player.getMins_pg());
 		newPlayer.setPrediction(player.getPrediction());
+		newPlayer.setUser(player.getUser());
 
-		for(SimilarPlayer s : player.getSimilarplayers()){
-			newPlayer.getSimilarplayers().add(s);
-		}
-
-		newPlayer.setUser(user);
+		System.out.println("\n\n" + newPlayer + "\n\n");
 
 		playerRepo.save(newPlayer);
-
-		return findAllMyPlayers(user.getUserid());
-
 	}
 
+	@Transactional
 	@Override
-	public List<Player> update(long id, Player player) {
+	public void update(long id, Player player) {
+
 		Player currentPlayer = new Player();
 
 		if(player.getImgurl() != null){
@@ -127,7 +126,12 @@ public class PlayerServiceImpl implements PlayerService {
 		}
 
 		playerRepo.save(currentPlayer);
+	}
 
-		return findAllMyPlayers(player.getUser().getUserid());
+
+	@Transactional
+	@Override
+	public void delete(long playerid, long userid) {
+		playerRepo.deleteById(playerid);
 	}
 }
