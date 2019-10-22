@@ -47,6 +47,8 @@ public class SeedData implements CommandLineRunner
         User u1 = new User("admin", "ILuvM4th!", "admin@lambdaschool.local", admins);
         u1 = userService.save(u1);
 
+
+
         // data, user
         ArrayList<UserRoles> datas = new ArrayList<>();
         datas.add(new UserRoles(new User(), r3));
@@ -71,6 +73,13 @@ public class SeedData implements CommandLineRunner
         users.add(new UserRoles(new User(), r2));
         User u5 = new User("testdog", "password", "testdog@school.lambda", users);
         u5 = userService.save(u5);
+
+        ArrayList<SimilarPlayer> s = new ArrayList<>();
+        Player p1 = new Player();
+        p1.setName("MJ");
+        p1.setSimilarplayers(s);
+        p1.setUser(u1);
+        playerService.save(p1);
 
         System.out.println("\n*** Seed Data ***");
         System.out.println(u1);

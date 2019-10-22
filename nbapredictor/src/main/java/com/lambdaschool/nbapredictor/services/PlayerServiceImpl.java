@@ -52,8 +52,6 @@ public class PlayerServiceImpl implements PlayerService {
 		}
 		newPlayer.setUser(player.getUser());
 
-		System.out.println("\n\n" + newPlayer + "\n\n");
-
 		return playerRepo.save(newPlayer);
 	}
 
@@ -127,7 +125,7 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Transactional
 	@Override
-	public void delete(long playerid, long userid) {
+	public void delete(long playerid) {
 		playerRepo.deleteById(playerid);
 	}
 }
