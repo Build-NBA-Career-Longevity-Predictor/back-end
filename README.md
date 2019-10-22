@@ -195,7 +195,23 @@ axios.post('https://nbapredictor-backend.herokuapp.com/login',
   "assists_pg": 0.0,
   "mins_pg": 0.0,
   "prediction": 0,
-  "similarplayers" :[]
+  "similarplayers" :[
+  {
+    "imgurl": "url here",
+    "name": "Fname Lname",
+    "position": "string",
+    "height": "string",
+    "weight": "string",
+    "college": "string",
+    "draft_year": 0,
+    "draft_pick": 0,
+    "drafted_by": "string",
+    "pts_pg": 0.0,
+    "rebounds_pg": 0.0,
+    "assists_pg": 0.0,
+    "mins_pg": 0.0
+  }
+  ]
 }
 ```
 

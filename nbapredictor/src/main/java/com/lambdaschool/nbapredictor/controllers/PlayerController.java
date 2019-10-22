@@ -53,7 +53,7 @@ public class PlayerController {
 	@DeleteMapping(value = "delete/{playerid}", produces = {"application/json"})
 	public ResponseEntity<?> deletePlayer(@PathVariable long playerid, Authentication authentication){
 		User me = userService.findByName(authentication.getName());
-		playerService.delete(playerid, me.getUserid());
+		playerService.delete(playerid);
 		return new ResponseEntity<>(playerService.findAllMyPlayers(me.getUserid()), HttpStatus.OK);
 	}
 }
