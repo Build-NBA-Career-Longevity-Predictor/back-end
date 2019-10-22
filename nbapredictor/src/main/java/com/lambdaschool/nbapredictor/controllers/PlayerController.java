@@ -30,6 +30,7 @@ public class PlayerController {
 
 	@GetMapping(value = "/{playerid}", produces = {"application/json"})
 	public ResponseEntity<?> getPlayerById(@PathVariable long playerid){
+		System.out.println("Outside " + playerService.findPlayerById(playerid));
 		return new ResponseEntity<>(playerService.findPlayerById(playerid), HttpStatus.OK);
 	}
 
@@ -37,8 +38,7 @@ public class PlayerController {
 	public ResponseEntity<?> createPlayer(@Valid @RequestBody Player newPlayer, Authentication authentication){
 		User me = userService.findByName(authentication.getName());
 		newPlayer.setUser(me);
-		playerService.save(newPlayer);
-		return new ResponseEntity<>(playerService.findAllMyPlayers(me.getUserid()), HttpStatus.CREATED);
+		return new ResponseEntity<>(playerService.save(newPlayer), HttpStatus.CREATED);
 	}
 
 	@PutMapping(value = "update/{playerid}", consumes = {"application/json"}, produces = {"application/json"})

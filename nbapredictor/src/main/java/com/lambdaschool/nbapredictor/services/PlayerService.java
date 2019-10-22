@@ -10,7 +10,7 @@ public interface PlayerService {
 
 	Player findPlayerById(long id);
 
-	void save(Player player);
+	Player save(Player player);
 
 	void update(long id, Player player);
 

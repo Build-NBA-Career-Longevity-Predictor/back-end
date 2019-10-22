@@ -3,14 +3,11 @@ package com.lambdaschool.nbapredictor.services;
 import com.lambdaschool.nbapredictor.exceptions.ResourceNotFoundException;
 import com.lambdaschool.nbapredictor.models.Player;
 import com.lambdaschool.nbapredictor.models.SimilarPlayer;
-import com.lambdaschool.nbapredictor.models.User;
 import com.lambdaschool.nbapredictor.repository.PlayerRepository;
-import com.lambdaschool.nbapredictor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("playerService")
@@ -18,22 +15,21 @@ public class PlayerServiceImpl implements PlayerService {
 	@Autowired
 	PlayerRepository playerRepo;
 
-	@Autowired
-	UserRepository userRepo;
-
 	@Override
 	public List<Player> findAllMyPlayers(long userid) {
+
 		return playerRepo.getAllPlayersFromUser(userid);
 	}
 
 	@Override
 	public Player findPlayerById(long id) {
+		System.out.println("Inside " + playerRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Player Id: " + id + " Not found.")));
 		return playerRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Player Id: " + id + " Not found."));
 	}
 
 	@Transactional
 	@Override
-	public void save(Player player) {
+	public Player save(Player player) {
 		Player newPlayer = new Player();
 
 		newPlayer.setImgurl(player.getImgurl());
@@ -50,11 +46,14 @@ public class PlayerServiceImpl implements PlayerService {
 		newPlayer.setAssists_pg(player.getAssists_pg());
 		newPlayer.setMins_pg(player.getMins_pg());
 		newPlayer.setPrediction(player.getPrediction());
+		for(SimilarPlayer s : player.getSimilarplayers()){
+			newPlayer.getSimilarplayers().add(s);
+		}
 		newPlayer.setUser(player.getUser());
 
 		System.out.println("\n\n" + newPlayer + "\n\n");
 
-		playerRepo.save(newPlayer);
+		return playerRepo.save(newPlayer);
 	}
 
 	@Transactional

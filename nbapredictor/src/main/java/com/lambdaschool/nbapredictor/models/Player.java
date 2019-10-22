@@ -33,7 +33,7 @@ public class Player extends Auditable {
 	@JsonIgnoreProperties("player")
 	private List<SimilarPlayer> similarplayers;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "userid")
 	@JsonIgnoreProperties("players")
 	private User user;
@@ -41,7 +41,7 @@ public class Player extends Auditable {
 	public Player() {
 	}
 
-	public Player(String imgurl, String name, String position, String height, String weight, String college, int draft_year, int draft_pick, String drafted_by, double pts_pg, double rebounds_pg, double assists_pg, double mins_pg, int prediction, List<SimilarPlayer> similarplayers, User user) {
+	public Player(String imgurl, String name, String position, String height, String weight, String college, int draft_year, int draft_pick, String drafted_by, double pts_pg, double rebounds_pg, double assists_pg, double mins_pg, int prediction, List<SimilarPlayer> similarplayers) {
 		this.imgurl = imgurl;
 		this.name = name;
 		this.position = position;
@@ -59,7 +59,6 @@ public class Player extends Auditable {
 		for(SimilarPlayer s : similarplayers){
 			s.setPlayer(this);
 		}
-		this.user = user;
 		this.similarplayers = similarplayers;
 	}
 
@@ -204,3 +203,4 @@ public class Player extends Auditable {
 		return "Player{" + "playerid=" + playerid + ", imgurl='" + imgurl + '\'' + ", name='" + name + '\'' + ", position='" + position + '\'' + ", height='" + height + '\'' + ", weight='" + weight + '\'' + ", college='" + college + '\'' + ", draft_year=" + draft_year + ", draft_pick=" + draft_pick + ", drafted_by='" + drafted_by + '\'' + ", pts_pg=" + pts_pg + ", rebounds_pg=" + rebounds_pg + ", assists_pg=" + assists_pg + ", mins_pg=" + mins_pg + ", prediction=" + prediction + ", similarplayers=" + similarplayers + ", user=" + user + '}';
 	}
 }
+
