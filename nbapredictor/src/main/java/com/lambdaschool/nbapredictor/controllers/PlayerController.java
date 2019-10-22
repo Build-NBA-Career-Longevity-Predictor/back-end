@@ -38,13 +38,15 @@ public class PlayerController {
 	public ResponseEntity<?> createPlayer(@Valid @RequestBody Player newPlayer, Authentication authentication){
 		User me = userService.findByName(authentication.getName());
 		newPlayer.setUser(me);
-		return new ResponseEntity<>(playerService.save(newPlayer), HttpStatus.CREATED);
+		playerService.save(newPlayer);
+		return new ResponseEntity<>(playerService.findAllMyPlayers(me.getUserid()), HttpStatus.CREATED);
 	}
 
 	@PutMapping(value = "update/{playerid}", consumes = {"application/json"}, produces = {"application/json"})
 	public ResponseEntity<?> updatePlayer(@RequestBody Player player, @PathVariable long playerid, Authentication authentication){
 		User me = userService.findByName(authentication.getName());
-		playerService.update(playerid, player);
+		player.setUser(me);
+		playerService.update(player, playerid);
 		return new ResponseEntity<>(playerService.findAllMyPlayers(me.getUserid()), HttpStatus.OK);
 	}
 

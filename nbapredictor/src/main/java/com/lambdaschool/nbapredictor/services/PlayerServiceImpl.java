@@ -47,6 +47,7 @@ public class PlayerServiceImpl implements PlayerService {
 		newPlayer.setMins_pg(player.getMins_pg());
 		newPlayer.setPrediction(player.getPrediction());
 		for(SimilarPlayer s : player.getSimilarplayers()){
+			s.setPlayer(newPlayer);
 			newPlayer.getSimilarplayers().add(s);
 		}
 		newPlayer.setUser(player.getUser());
@@ -58,9 +59,9 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Transactional
 	@Override
-	public void update(long id, Player player) {
+	public Player update(Player player, long id) {
 
-		Player currentPlayer = new Player();
+		Player currentPlayer = playerRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Player Id: " + id + " Not found."));
 
 		if(player.getImgurl() != null){
 			currentPlayer.setImgurl(player.getImgurl());
@@ -118,13 +119,9 @@ public class PlayerServiceImpl implements PlayerService {
 			currentPlayer.setPrediction(player.getPrediction());
 		}
 
-		if(player.getSimilarplayers().size() > 0){
-			for(SimilarPlayer s : player.getSimilarplayers()){
-				currentPlayer.getSimilarplayers().add(s);
-			}
-		}
+		currentPlayer.setUser(player.getUser());
 
-		playerRepo.save(currentPlayer);
+		return playerRepo.save(currentPlayer);
 	}
 
 
