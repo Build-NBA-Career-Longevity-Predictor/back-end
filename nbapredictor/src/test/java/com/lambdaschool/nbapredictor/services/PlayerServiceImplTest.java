@@ -42,7 +42,7 @@ public class PlayerServiceImplTest {
 	}
 
 	@Test
-	public void B_findPlayerById() { //error:  failed to lazily initialize a collection of role: com.lambdaschool.nbapredictor.models.Player.similarplayers, could not initialize proxy
+	public void B_findPlayerById() {
 		assertEquals("MJ", playerService.findPlayerById(9).getName());
 	}
 
