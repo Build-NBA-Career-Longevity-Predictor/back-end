@@ -49,6 +49,9 @@ public class PlayerServiceImplTest {
 	@Test
 	public void C_save() {
 		ArrayList<SimilarPlayer> s = new ArrayList<>();
+		SimilarPlayer sp = new SimilarPlayer();
+		sp.setName("Test");
+		s.add(sp);
 		Player p1 = new Player();
 		p1.setName("KB");
 		p1.setSimilarplayers(s);
@@ -63,6 +66,19 @@ public class PlayerServiceImplTest {
 		ArrayList<SimilarPlayer> s = new ArrayList<>();
 		Player p1 = new Player();
 		p1.setName("KB");
+		p1.setImgurl("l");
+		p1.setPosition("her");
+		p1.setWeight("sfa");
+		p1.setHeight("a");
+		p1.setCollege("a");
+		p1.setDrafted_by("a");
+		p1.setDraft_pick(3);
+		p1.setDraft_year(1221);
+		p1.setPts_pg(5.0);
+		p1.setRebounds_pg(5.0);
+		p1.setAssists_pg(5.0);
+		p1.setMins_pg(5.0);
+		p1.setPrediction(4);
 		p1.setSimilarplayers(s);
 		p1.setUser(userService.findUserById(4));
 		p1 = playerService.save(p1);
