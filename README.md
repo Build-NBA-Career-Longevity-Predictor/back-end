@@ -2,7 +2,7 @@
 
 NBA contracts are sometimes 9 figures long. It is in a team's best interest to have a good idea of the longevity of a player's productivity. This application uses historical data to find similar players and predict a selected player's likely longevity and success in the league.
 
-[**Product Canvas Document**]
+[**Product Canvas Document**](https://docs.google.com/document/d/1Gw0yPKljvUiy4aHXizLJdIPDEl8oENlWPuL7E6f3Vbc/edit)
 
 ---
 
